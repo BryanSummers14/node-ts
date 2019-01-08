@@ -1,0 +1,41 @@
+{
+  "name": "node-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build:live",
+    "start:redis": "npm run build:redis",
+    "start:pm2": "pm2 start dist/index.js -i max",
+    "down": "pm2 stop dist/index.js",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "build:redis": "nodemon --watch 'redis/**/*.ts' --exec 'ts-node' redis/index.ts",
+    "perf": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/faker": "^4.1.4",
+    "@types/pg": "^7.4.11",
+    "bcrypt": "^3.0.3",
+    "faker": "^4.1.0",
+    "fastify": "^1.13.2",
+    "knex": "^0.16.3",
+    "mysql": "^2.16.0",
+    "pg": "^7.7.1",
+    "pm2": "^3.2.3",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.5",
+    "@types/node": "^10.12.15",
+    "@types/redis": "^2.8.10",
+    "@zeit/ncc": "^0.8.1",
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
+  }
+}
