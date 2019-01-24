@@ -6,12 +6,13 @@
   "scripts": {
     "start": "npm run build:live",
     "start:redis": "npm run build:redis",
-    "start:pm2": "pm2 start dist/index.js -i max",
-    "down": "pm2 stop dist/index.js",
-    "build": "tsc -p .",
+    "start:pm2": "pm2 start dist/server.js -i max",
+    "down": "pm2 stop dist/server.js",
+    "build": "tsc -p . && npm run build:gcc && npm run build:clean",
+    "build:gcc": "npx google-closure-compiler --js=./dist/src/index.js --js_output_file=./dist/server.js",
+    "build:clean": "rm -rf ./dist/redis && rm -rf ./dist/helpers && rm -rf ./dist/src",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "build:redis": "nodemon --watch 'redis/**/*.ts' --exec 'ts-node' redis/index.ts",
-    "perf": ""
+    "build:redis": "nodemon --watch 'redis/**/*.ts' --exec 'ts-node' redis/index.ts"
   },
   "keywords": [],
   "author": "",
